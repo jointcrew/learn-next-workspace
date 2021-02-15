@@ -85,6 +85,53 @@
           }
         }
       }
+    },
+    "dynamic-route": {
+      "root": "apps/dynamic-route",
+      "sourceRoot": "apps/dynamic-route",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "root": "apps/dynamic-route",
+            "outputPath": "dist/apps/dynamic-route"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "dynamic-route:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "dynamic-route:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "dynamic-route:build:production"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/dynamic-route/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
